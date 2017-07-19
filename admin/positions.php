@@ -31,7 +31,6 @@
 			<div class="col-md-4 col-md-offset-4">
 				<form class="form-inline" action="/admin/positions.php" method="POST">
 				  <div class="form-group">
-				    <label class="sr-only" for="position">Email address</label>
 				    <input type="text" class="form-control" id="position" name="positionname" placeholder="Position name">
 				  </div>
 
