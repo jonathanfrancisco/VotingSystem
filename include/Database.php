@@ -15,7 +15,7 @@ class Database {
 
 			try {
 
-				$connection = new PDO('mysql:host=localhost;dbname=votingsystem','root','1234');
+				$connection = new PDO('mysql:host=localhost;dbname=votingsystem','root','');
 
 			} catch(PDOException $e) {
 

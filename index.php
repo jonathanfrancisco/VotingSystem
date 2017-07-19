@@ -8,7 +8,8 @@
 	// if server request is POST do authentication
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id'])) {
 
-		require 'include/functions.php';	
+		require 'include/functions.php';		
+
 
 		$authID = authenticateAndAuthorize($_POST['id']);
 
@@ -33,7 +34,7 @@
 		}
 
 		else {
-			throw new Excception("Error");
+			throw new Excception("Error");	
 		}
 
 

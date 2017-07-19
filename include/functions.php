@@ -1,9 +1,7 @@
 <?php
 
 	require 'Database.php';
-
-
-
+	
 	// authenticate and authorize a user
 	// if result == 1 redirect to admin
 	// otherwise, redirect to voting page
@@ -12,7 +10,7 @@
 		try {
 
 			$connection = Database::connect();
-			$query = $connection->prepare("SELECT authorization FROM User WHERE user_id = :id");
+			$query = $connection->prepare("SELECT authorization FROM Users WHERE user_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
 			$result = $query->fetch(PDO::FETCH_ASSOC);
@@ -21,7 +19,6 @@
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
-
 
 		return $result['authorization'];
 
