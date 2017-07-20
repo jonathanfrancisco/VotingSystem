@@ -24,18 +24,16 @@
 
 	}
 
-
-	// positions crud
-
+	////// POSITION FUNCTIONALITIES /////////////
 	function addPosition($positionName) {
 
 		try {
 
-		$connection = Database::connect();
-		$query = $connection->prepare("INSERT INTO officerpositions VALUES(NULL,:positionName) ");
-		$query->bindParam(":positionName",$positionName,PDO::PARAM_STR);
-		$query->execute();
-		Database::connect();
+			$connection = Database::connect();
+			$query = $connection->prepare("INSERT INTO officerpositions VALUES(NULL,:positionName) ");
+			$query->bindParam(":positionName",$positionName,PDO::PARAM_STR);
+			$query->execute();
+			Database::disconnect();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -84,6 +82,33 @@
 		}
 
 	}
+
+	////////////////
+
+	function addVoter($id, $firstName, $lastName) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("INSERT INTO users VALUES(:id,:firstName,:lastName,NULL,NULL)");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			$query->bindParam(":firstName",$firstName,PDO::PARAM_STR);
+			$query->bindParam(":lastName",$lastName,PDO::PARAM_STR);
+			$query->execute();
+			Database::disconnect();
+
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+			exit;
+		}
+
+	}
+
+
+
+
+
 
 
 ?>

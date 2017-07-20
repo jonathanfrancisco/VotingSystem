@@ -2,11 +2,19 @@
 
 <?php
 
+	require '../include/functions.php';
 	session_start();
 
 	if(!(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == 1)) {
 		header("location:../index.php");
 		exit;
+	}
+
+
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['auth_id'] == 1) {
+		addVoter($_POST['id'],$_POST['firstname'],$_POST['lastname']);
+		header("location:voters.php");
 	}
 
 
@@ -22,7 +30,7 @@
 
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="text-center" method="POST" action="/admin/elections.php">
+				<form class="text-center" method="POST" action="/admin/voters.php">
 
 				  <div class="form-group">
 				    <label for="id">ID:</label>
