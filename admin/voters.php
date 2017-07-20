@@ -32,13 +32,13 @@
 
 				  <div class="form-group">
 				    <label for="firstname">First Name:</label>
-				    <input required type="text" class="form-control" id="firstname" name="firstname">
+				    <input required type="text" class="form-control" id="firstname" name="firstname" placeholder="First name">
 				  </div>
 
 
 				  <div class="form-group">
 				    <label for="lastname">Last Name:</label>
-				    <input required type="text" class="form-control" id="lastname" name="lastname">
+				    <input required type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name">
 				  </div>
 
 				
