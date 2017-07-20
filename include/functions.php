@@ -107,6 +107,26 @@
 	}
 
 
+	function addElection($electionTitle, $startDate, $endDate) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("INSERT INTO elections VALUES(NULL,:electionTitle,:startDate,:endDate)");
+			$query->bindParam(":electionTitle",$electionTitle,PDO::PARAM_STR);
+			$query->bindParam(":startDate",$startDate,PDO::PARAM_STR);
+			$query->bindParam(":endDate",$endDate,PDO::PARAM_STR);
+			$query->execute();
+			Database::disconnect();
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+
+	}
+
+
 
 
 

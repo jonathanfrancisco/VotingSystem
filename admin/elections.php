@@ -1,6 +1,8 @@
 
 <?php 
+	
 
+	require '../include/functions.php';
 	session_start();
 
 
@@ -15,9 +17,15 @@
 	// to prevent student accessing admin sites
 	else if(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "0") {
 		header("location:../student/home.php");
+		exit;
 	}
 
+	if( $_SERVER['REQUEST_METHOD'] == "POST" && $_SESSION['auth_id'] == "1") {
 
+		addElection($_POST['electiontitle'],$_POST['startdate'],$_POST['enddate']);
+		header("location:elections.php");
+		exit;
+	}
 
 
 
@@ -45,8 +53,8 @@
 
 
 				  <div class="form-group">
-				    <label for="id">End Date:</label>
-				    <input required type="date" class="form-control" id="id" name="enddate">
+				    <label for="enddate">End Date:</label>
+				    <input required type="date" class="form-control" id="enddate" name="enddate">
 				  </div>
 
 				
