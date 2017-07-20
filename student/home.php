@@ -3,10 +3,20 @@
 	
 	session_start();
 
-	if(!(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "0")) {
+	// if session auth id is not set redirect to login page
+	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");
 		exit;
 	}
+
+	// if session auth id set and it is a admin redirect it to admin page
+	// to prevent admin accessing student vote page
+	else if(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "1") {
+		header("location:../admin/home.php");
+	}
+
+
+
 
 	$title = "Student vote";
 

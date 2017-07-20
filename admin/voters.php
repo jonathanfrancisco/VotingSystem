@@ -5,14 +5,20 @@
 	require '../include/functions.php';
 	session_start();
 
-	if(!(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == 1)) {
+	// if session auth id is not set redirect to login page
+	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");
 		exit;
+	}
+	// if session auth id set and it is a voter redirect it to student vote page
+	// to prevent student accessing admin sites
+	else if(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "0") {
+		header("location:../student/home.php");
 	}
 
 
 
-	if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['auth_id'] == 1) {
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['auth_id'] == "1") {
 		addVoter($_POST['id'],$_POST['firstname'],$_POST['lastname']);
 		header("location:voters.php");
 	}

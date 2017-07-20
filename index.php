@@ -44,13 +44,15 @@
 	// if server request is GET and session ID is set then redirect in to voting page
 	else if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['auth_id'])) {
 
-		if($_SESSION['auth_id'] == 1) {
+		if($_SESSION['auth_id'] == "1") {
 			header("location:admin/home.php");
 		}
 
-		else if($_SESSION['auth_id'] === 0) {
+		else if($_SESSION['auth_id'] == "0") {
 			header("location:student/home.php");
 		}
+
+
 
 	}
 	
