@@ -13,7 +13,7 @@
 			$query = $connection->prepare("SELECT authorization FROM Users WHERE user_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
-			$result = $query->fetch(PDO::FETCH_ASSOC);
+			$result = $query->fetch();
 			Database::disconnect();
 
 		} catch(PDOException $e) {

@@ -7,7 +7,7 @@
 	session_start();
 
 
-	if(!(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == 1)) {
+	if(!(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "1")) {
 		header("location:../index.php");
 		exit;
 	}

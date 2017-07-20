@@ -4,24 +4,25 @@
 <?php 
 	
 	session_start();	
-		
+	
+
+
 	// if server request is POST do authentication
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id'])) {
 
 		require 'include/functions.php';		
 
-
 		$authID = authenticateAndAuthorize($_POST['id']);
 
 		// if admin, redirect to admin panel
-		if($authID == 1) {
+		if($authID == "1") {
 			$_SESSION['auth_id'] = $authID;
 			header("location:admin/home.php");
 			exit;
 		}
 
 		// else if voter, redirect to voting page
-		else if($authID === 0) {
+		else if($authID == "0") {
 			$_SESSION['auth_id'] = $authID;
 			header("location:student/home.php");
 			exit;
@@ -30,13 +31,13 @@
 		// stay on page
 		else if(empty($authID)) {
 			echo "ID does not exist or Wrong ID!";
+			var_dump($authID);
 			exit;
 		}
 
 		else {
 			throw new Excception("Error");	
 		}
-
 
 	}
 
@@ -52,10 +53,6 @@
 		}
 
 	}
-
-
-
-
 	
 	$title = "Login";
 	require 'include/templates/header.php';
