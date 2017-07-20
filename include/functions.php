@@ -94,20 +94,7 @@
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->bindParam(":firstName",$firstName,PDO::PARAM_STR);
 			$query->bindParam(":lastName",$lastName,PDO::PARAM_STR);
-			
- 
-
-			if($query->execute()) {
-				echo "Success";
-				exit;
-			}
-
-			else {
-				echo "DAFUQ";
-				var_dump($query);
-				exit;
-			}
-
+			$query->execute();
 
 			Database::disconnect();
 

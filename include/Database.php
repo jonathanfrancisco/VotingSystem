@@ -16,6 +16,7 @@ class Database {
 			try {
 
 				$connection = new PDO('mysql:host=localhost;dbname=votingsystem','root','');
+				$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 			} catch(PDOException $e) {
 
