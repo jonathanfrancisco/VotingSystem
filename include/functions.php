@@ -90,11 +90,25 @@
 		try {
 
 			$connection = Database::connect();
-			$query = $connection->prepare("INSERT INTO users VALUES(:id,:firstName,:lastName,NULL,NULL)");
+			$query = $connection->prepare("INSERT INTO users VALUES(:id,:firstName,:lastName,1,0)");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->bindParam(":firstName",$firstName,PDO::PARAM_STR);
 			$query->bindParam(":lastName",$lastName,PDO::PARAM_STR);
-			$query->execute();
+			
+ 
+
+			if($query->execute()) {
+				echo "Success";
+				exit;
+			}
+
+			else {
+				echo "DAFUQ";
+				var_dump($query);
+				exit;
+			}
+
+
 			Database::disconnect();
 
 
