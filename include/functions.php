@@ -127,6 +127,27 @@
 	}
 
 
+	function getElections() {
+
+		try {
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT * FROM elections");
+			$query->execute();
+			$results = $query->fetchAll(PDO::FETCH_ASSOC);
+			Database::disconnect();
+
+
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+		return $results;
+
+
+	}
+
+
 
 
 
