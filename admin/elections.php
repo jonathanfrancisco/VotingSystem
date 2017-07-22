@@ -12,7 +12,6 @@
 		exit;
 	}
 
-
 	// if session auth id set and it is a voter redirect it to student vote page
 	// to prevent student accessing admin sites
 	else if(isset($_SESSION['auth_id']) && $_SESSION['auth_id'] == "0") {
@@ -28,8 +27,6 @@
 	}
 
 
-
-	
 	$title = "Elections";
 	require '../include/templates/header.php';
 
@@ -63,6 +60,47 @@
 				</form>
 			</div>
 		</div>
+
+		<div class="row">
+
+			<div class="col-md-10 col-md-offset-1">
+
+				<table class="table table-hover">
+					<thead>
+						<tr> 
+							<th>Election Title</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<?php 
+							$elections = getElections(); 
+
+							foreach($elections as $election) {
+
+								echo "<tr>".
+									 "<td>".$election['election_title']."</td>".
+									 "<td>".$election['start_date']."</td>".
+									 "<td>".$election['end_date']."</td>".
+									 "</tr>";
+
+
+							}
+
+						?>
+						
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+
 	</div>
 
 
