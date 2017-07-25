@@ -19,6 +19,7 @@
 		exit;
 	}
 
+
 	if( $_SERVER['REQUEST_METHOD'] == "POST" && $_SESSION['auth_id'] == "1") {
 
 		addElection($_POST['electiontitle'],$_POST['startdate'],$_POST['enddate']);
@@ -26,6 +27,8 @@
 		exit;
 	}
 
+
+	
 
 	$title = "Elections";
 	require '../include/templates/header.php';
@@ -71,6 +74,7 @@
 							<th>Election Title</th>
 							<th>Start Date</th>
 							<th>End Date</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 
@@ -85,6 +89,7 @@
 									 "<td>".$election['election_title']."</td>".
 									 "<td>".$election['start_date']."</td>".
 									 "<td>".$election['end_date']."</td>".
+									 "<td>"."<a class='btn btn-default' href='election.php?view=".$election['election_id']."' role='button'>View</a>"." <a class='btn btn-default' href='election.php?delete=".$election['election_id']."' role='button'>Delete</a>"."</td>".
 									 "</tr>";
 
 

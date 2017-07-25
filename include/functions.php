@@ -124,19 +124,19 @@
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
+
 	}
 
 	// fetch all elections
 	function getElections() {
 
 		try {
+
 			$connection = Database::connect();
 			$query = $connection->prepare("SELECT * FROM elections ORDER BY start_date DESC");
 			$query->execute();
 			$results = $query->fetchAll(PDO::FETCH_ASSOC);
 			Database::disconnect();
-
-
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -145,6 +145,8 @@
 		return $results;
 
 	}
+
+	/////////////////////////////////// ELECTION DETAILS ///////////////////////////////////////////
 
 	// return a specific election
 	function getElection($id) {
@@ -163,16 +165,12 @@
 			echo $e->getMessage();
 		}
 
-
 		return $result;
 
 	}
 
 	// return candidates of a specific election
 	function getCandidates($id) {
-
-		var_dump($id);
-		exit;
 
 		try {
 			$connection = Database::connect();

@@ -62,8 +62,5 @@
 
 
 
-
-
-
 <?php require '../include/templates/footer.php'; ?>
 

@@ -17,7 +17,6 @@
 
 
 
-
 	$title = "Student vote";
 
 	require '../include/templates/header.php';

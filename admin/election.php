@@ -24,9 +24,12 @@
 
 		// fetch the details of this election by id
 		$electionDetails = getElection($_GET['view']);
+
 		// fetch candidates of this election by id_election assign to candidatees
 		$candidates = getCandidates($_GET['view']);
-		
+
+		// fetch all available position for a candidate
+		$positions = getPositions();		
 	}
 
 	else if($_SERVER['REQUEST_METHOD'] == "GET" && !isset($_GET['view'])) {
@@ -90,12 +93,23 @@
 
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="form-inline" action="/admin/positions.php" method="POST">
+				<form class="form-inline" action="/admin/election.php" method="POST">
 				  <div class="form-group">
-				    <input type="text" class="form-control" id="position" name="positionname" placeholder="Position name">
+				    <input type="text" class="form-control" id="candidate" name="candidate" placeholder="Candidate name">
 				  </div>
 
-				  <button type="submit" class="btn btn-default">Add position</button>
+				  <select name="position">
+				  	<?php 
+					  	foreach($positions as $position) {
+
+					  		echo "<option>".$position['position_name']."</option>";
+
+
+					  	}
+				  	?>
+				  </select>
+
+				  <button type="submit" class="btn btn-default">Add Candidate</button>
 				</form>
 			</div>
 		</div>
