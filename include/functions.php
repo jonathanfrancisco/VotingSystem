@@ -169,6 +169,35 @@
 
 	}
 
+	// add candidate to this specific election
+
+	function addCandidate($candidateName, $electionId, $positionName) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("INSERT INTO candidates VALUES(NULL,:candidate_name, :election_id, :position_id) ");
+			$query->bindParam(":candidate_name",$candidateName,PDO::PARAM_STR);
+			$query->bindParam(":election_id",$electionId,PDO::PARAM_INT);
+			$query->bindParam(":position_id",$positionName,PDO::PARAM_INT);
+			$query->execute();
+			Database::disconnect();
+
+		} catch(PDoexception $e) {
+
+			echo $e->getMessage();
+
+		}
+
+
+	}
+
+
+
+
+
+
+
 	// return candidates of a specific election
 	function getCandidates($id) {
 
@@ -183,8 +212,6 @@
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
-
-
 
 		return $results;
 

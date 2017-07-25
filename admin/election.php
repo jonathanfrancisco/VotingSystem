@@ -39,8 +39,11 @@
 
 	else if($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['auth_id'] == "1") {
 
-		// get current post id
-		// add candidates to this post
+
+		// add candidates to this election
+		addCandidate($_POST['candidateName'], $_POST['electionId'],$_POST['position']);
+		header("location:election.php?view=".$_POST['electionId']);
+	
 
 	}	
 
@@ -69,6 +72,7 @@
 							<th>Election Title</th>
 							<th>Start Date</th>
 							<th>End Date</th>
+
 						</tr>
 					</thead>
 
@@ -94,16 +98,17 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<form class="form-inline" action="/admin/election.php" method="POST">
+
 				  <div class="form-group">
-				    <input type="text" class="form-control" id="candidate" name="candidate" placeholder="Candidate name">
+				    <input type="text" class="form-control" id="candidate" name="candidateName" placeholder="Candidate name">
+				    <input type="hidden" class="form-control" id="electionId" name="electionId" value="<?php echo $electionDetails['election_id'];?> ">
 				  </div>
 
 				  <select name="position">
 				  	<?php 
 					  	foreach($positions as $position) {
 
-					  		echo "<option>".$position['position_name']."</option>";
-
+					  		echo "<option value='".$position['officer_position_id']."'>".$position['position_name']."</option>";
 
 					  	}
 				  	?>
@@ -129,6 +134,17 @@
 					</thead>
 
 					<tbody>
+
+
+						<ul>
+						<?php
+
+							foreach($candidates as $candidate) {
+								echo "<li>".$candidate['candidate_name']." for ".$candidate['position_name']." </li>";
+							}
+						?>
+
+						</ul>
 
 
 					</tbody>
