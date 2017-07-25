@@ -24,7 +24,7 @@
 
 	}
 
-	////// POSITION FUNCTIONALITIES /////////////
+	////// POSITION CRUD Functionalities /////////////
 	function addPosition($positionName) {
 
 		try {
@@ -85,6 +85,8 @@
 
 	////////////////
 
+
+	// add a voter/student
 	function addVoter($id, $firstName, $lastName) {
 
 		try {
@@ -106,7 +108,7 @@
 
 	}
 
-
+	// add an election
 	function addElection($electionTitle, $startDate, $endDate) {
 
 		try {
@@ -122,16 +124,14 @@
 		} catch(PDOException $e) {
 			echo $e->getMessage();
 		}
-
-
 	}
 
-
+	// fetch all elections
 	function getElections() {
 
 		try {
 			$connection = Database::connect();
-			$query = $connection->prepare("SELECT * FROM elections");
+			$query = $connection->prepare("SELECT * FROM elections ORDER BY start_date DESC");
 			$query->execute();
 			$results = $query->fetchAll(PDO::FETCH_ASSOC);
 			Database::disconnect();
@@ -144,12 +144,56 @@
 
 		return $results;
 
+	}
+
+	// return a specific election
+	function getElection($id) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT * FROM elections WHERE election_id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			$query->execute();
+			$result = $query->fetch();
+			$connection = Database::disconnect();
+
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+
+		return $result;
+
+	}
+
+	// return candidates of a specific election
+	function getCandidates($id) {
+
+		var_dump($id);
+		exit;
+
+		try {
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT candidate_name, position_name FROM candidates INNER JOIN elections ON candidates.election_id = elections.election_id INNER JOIN officerpositions ON candidates.officer_position_id = officerpositions.officer_position_id WHERE candidates.election_id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			$query->execute();
+			$results = $query->fetchAll(PDO::FETCH_ASSOC);
+			$connection = Database::connect();
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+
+
+		return $results;
 
 	}
 
 
-
-
+ 
 
 
 
