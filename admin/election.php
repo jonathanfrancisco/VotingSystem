@@ -135,17 +135,12 @@
 
 					<tbody>
 
-
-						<ul>
 						<?php
 
 							foreach($candidates as $candidate) {
-								echo "<li>".$candidate['candidate_name']." for ".$candidate['position_name']." </li>";
+								echo "<tr> <td>".$candidate['candidate_name']." for ".$candidate['position_name']." </td> </tr>";
 							}
 						?>
-
-						</ul>
-
 
 					</tbody>
 				</table>
