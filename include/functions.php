@@ -169,6 +169,26 @@
 
 	}
 
+
+	function deleteElection($id) {
+
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("DELETE FROM elections WHERE election_id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			$query->execute();
+			$connection = Database::disconnect();
+
+		} catch(PDOexception $e) {
+			echo $e->getMessage();
+		}
+
+	}
+
+
+
 	// add candidate to this specific election
 
 	function addCandidate($candidateName, $electionId, $positionName) {
@@ -193,6 +213,26 @@
 	}
 
 
+	// remove all candidates from an election
+
+	function deleteCandidates($id) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("DELETE FROM candidates WHERE election_id = :id");
+			$query->bindParam(":id",$id,PDO::PARAM_INT);
+			$query->execute();
+			$connection = Database::disconnect();
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+
+	}
+
+
 
 
 
@@ -201,7 +241,7 @@
 	// return candidates of a specific election
 	function getCandidates($id) {
 
-		try {
+		try { 
 			$connection = Database::connect();
 			$query = $connection->prepare("SELECT candidate_name, position_name FROM candidates INNER JOIN elections ON candidates.election_id = elections.election_id INNER JOIN officerpositions ON candidates.officer_position_id = officerpositions.officer_position_id WHERE candidates.election_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);

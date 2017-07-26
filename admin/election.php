@@ -32,6 +32,16 @@
 		$positions = getPositions();		
 	}
 
+	else if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['delete'])) {
+
+		// delete the election with its corresponding candidates
+		deleteElection($_GET['delete']);
+		deleteCandidates($_GET['delete']);
+		header("location:elections.php");
+
+	}
+
+
 	else if($_SERVER['REQUEST_METHOD'] == "GET" && !isset($_GET['view'])) {
 		header("location:elections.php");
 		exit;
