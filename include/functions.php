@@ -76,6 +76,7 @@
 			$query = $connection->prepare("DELETE FROM officerpositions INNER JOIN candidates ON officerpositions.officer_position_id = candidates.officer_position_id WHERE officerpositions.officer_position_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
+			Database::disconnect();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -97,7 +98,6 @@
 			$query->bindParam(":firstName",$firstName,PDO::PARAM_STR);
 			$query->bindParam(":lastName",$lastName,PDO::PARAM_STR);
 			$query->execute();
-
 			Database::disconnect();
 
 
@@ -158,7 +158,7 @@
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
 			$result = $query->fetch();
-			$connection = Database::disconnect();
+			Database::disconnect();
 
 
 		} catch(PDOException $e) {
@@ -179,7 +179,7 @@
 			$query = $connection->prepare("DELETE FROM elections WHERE election_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
-			$connection = Database::disconnect();
+			Database::disconnect();
 
 		} catch(PDOexception $e) {
 			echo $e->getMessage();
@@ -223,7 +223,7 @@
 			$query = $connection->prepare("DELETE FROM candidates WHERE election_id = :id");
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
-			$connection = Database::disconnect();
+			Database::disconnect();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -231,12 +231,6 @@
 
 
 	}
-
-
-
-
-
-
 
 	// return candidates of a specific election
 	function getCandidates($id) {
@@ -247,7 +241,7 @@
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
 			$results = $query->fetchAll(PDO::FETCH_ASSOC);
-			$connection = Database::connect();
+			Database::diconnect();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -256,9 +250,6 @@
 		return $results;
 
 	}
-
-
- 
 
 
 
