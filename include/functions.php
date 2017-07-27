@@ -241,7 +241,7 @@
 			$query->bindParam(":id",$id,PDO::PARAM_INT);
 			$query->execute();
 			$results = $query->fetchAll(PDO::FETCH_ASSOC);
-			Database::diconnect();
+			Database::disconnect();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
