@@ -46,10 +46,5 @@
 </div>
 
 
-<form method="POST" action="../logout.php">
-	<input type='submit' value="Logout">
-</form>
-
-
 
 <?php require '../include/templates/footer.php' ?>

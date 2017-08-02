@@ -32,6 +32,11 @@
 				        <li><a href="../../admin/voters.php">Voters</a></li>
 				        <li><a href="../../admin/results.php">Results</a></li>
 				      </ul>
+
+				      <form action="../../logout.php" method="POST">
+				     	<p type="submit">Logout</p>
+				      </form>
+				     
 				    </div><!-- /.navbar-collapse -->
 
 				  </div><!-- /.container-fluid -->
