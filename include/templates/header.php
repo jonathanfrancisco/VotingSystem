@@ -34,7 +34,10 @@
 				      </ul>
 
 				      <form action="../../logout.php" method="POST">
-				     	<p type="submit">Logout</p>
+
+				     	<button class="nav-right" type="submit">Logout</button>
+
+
 				      </form>
 				     
 				    </div><!-- /.navbar-collapse -->
