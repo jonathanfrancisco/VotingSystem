@@ -53,7 +53,6 @@
 		}
 
 
-
 	}
 	
 	$title = "Login";
@@ -78,4 +77,4 @@
 	</div>
 
 
-<?php require 'include/templates/header.php'; ?>
+<?php require 'include/templates/footer.php'; ?>
