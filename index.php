@@ -1,12 +1,7 @@
-
-
-
 <?php 
 	
 	session_start();	
 	
-
-
 	// if server request is POST do authentication
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id'])) {
 
@@ -63,7 +58,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-4 col-md-offset-4">	
 				<form class="text-center" method="POST" action="/">
 				  <div class="form-group">
 				    <label for="id">Student ID:</label>
