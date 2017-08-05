@@ -59,7 +59,7 @@
 
 				
 				 
-				  <button type="submit" class="btn btn-default">Add new election</button>
+				  <button type="submit" class="btn btn-primary">Add new election</button>
 				</form>
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 									 "<td>".$election['election_title']."</td>".
 									 "<td>".$election['start_date']."</td>".
 									 "<td>".$election['end_date']."</td>".
-									 "<td>"."<a class='btn btn-default' href='election.php?view=".$election['election_id']."' role='button'>View</a>"." <a class='btn btn-default' href='election.php?delete=".$election['election_id']."' role='button'>Delete</a>"."</td>".
+									 "<td>"."<a class='btn btn-primary' href='election.php?view=".$election['election_id']."' role='button'>View</a>"." <a class='btn btn-danger' href='election.php?delete=".$election['election_id']."' role='button'>Delete</a>"."</td>".
 									 "</tr>";
 
 

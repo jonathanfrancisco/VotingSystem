@@ -52,7 +52,7 @@
 			<?php 
 				$positions = getPositions();		
 				foreach($positions as $position) {
-					echo "<li>".$position["position_name"]." <a href='delete-position.php?id=".$position["officer_position_id"]."'>Delete</a> </li>";
+					echo "<li>".$position["position_name"]." <a class='btn btn-danger' href='delete-position.php?id=".$position["officer_position_id"]."'>Delete</a> </li>";
 				}
 
 			?>

@@ -124,7 +124,7 @@
 				  	?>
 				  </select>
 
-				  <button type="submit" class="btn btn-default">Add Candidate</button>
+				  <button type="submit" class="btn btn-primary">Add Candidate</button>
 				</form>
 			</div>
 		</div>

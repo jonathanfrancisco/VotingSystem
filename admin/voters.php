@@ -57,7 +57,7 @@
 
 				
 				 
-				  <button type="submit" class="btn btn-default">Add new voter</button>
+				  <button type="submit" class="btn btn-primary">Add new voter</button>
 				</form>
 			</div>
 		</div>
