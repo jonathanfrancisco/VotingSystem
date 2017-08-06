@@ -23,10 +23,6 @@
 	}
 	
 
-
-
-
-
 	$title = "Body Positions";
 	require '../include/templates/header.php';
 
@@ -46,18 +42,38 @@
 			</div>
 		</div>
 
-		<h2>Positions</h2>
-		<ul> 
 
-			<?php 
-				$positions = getPositions();		
-				foreach($positions as $position) {
-					echo "<li>".$position["position_name"]." <a class='btn btn-danger' href='delete-position.php?id=".$position["officer_position_id"]."'>Delete</a> </li>";
-				}
 
-			?>
+		<div class="row">
 
-		</ul>
+			<div class="col-md-6 col-md-offset-3">
+
+				<table class="table table-hover">
+					<thead>
+						<tr> 
+							<th>Positions</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+
+						<?php
+
+						$positions = getPositions();
+
+						foreach($positions as $position) {
+							echo "<tr> <td>".$position['position_name']."</td> <td> <a class='btn btn-danger' href='delete-position.php?id='".$position['officer_position_id']."'>Delete</a></td> </tr>";
+						}
+
+						?>
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
 	</div>
 
 

@@ -251,6 +251,49 @@
 
 	}
 
+	function getCandidatesForPosition($positionName,$electionId) {
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT candidate_id, candidate_name FROM candidates INNER JOIN elections ON candidates.election_id = elections.election_id INNER JOIN officerpositions ON candidates.officer_position_id = officerpositions.officer_position_id WHERE elections.election_id = :electionId AND officerpositions.position_name = :positionName");
+			$query->bindParam(":electionId",$electionId,PDO::PARAM_INT);
+			$query->bindParam(":positionName",$positionName,PDO::PARAM_STR);
+			$query->execute();
+			$results = $query->fetchAll(PDO::FETCH_ASSOC);
+			Database::disconnect();
+
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+		return $results;
+	}
+
+
+	// check for on going election
+
+
+	function checkOngoingElection($dateToday) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT * FROM elections WHERE start_date >= :dateToday ORDER BY start_date");
+			$query->bindParam(":dateToday",$dateToday,PDO::PARAM_STR);
+			$query->execute();
+			$result = $query->fetch(PDO::FETCH_ASSOC);
+			Database::disconnect();
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+	
+		return $result;
+
+	}
+
 
 
 ?>

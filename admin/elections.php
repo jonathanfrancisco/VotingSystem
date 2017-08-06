@@ -89,7 +89,7 @@
 									 "<td>".$election['election_title']."</td>".
 									 "<td>".$election['start_date']."</td>".
 									 "<td>".$election['end_date']."</td>".
-									 "<td>"."<a class='btn btn-primary' href='election.php?view=".$election['election_id']."' role='button'>View</a>"." <a class='btn btn-danger' href='election.php?delete=".$election['election_id']."' role='button'>Delete</a>"."</td>".
+									 "<td>"."<a class='btn btn-primary' href='election.php?view=".$election['election_id']."' role='button'>View</a> <a class='btn btn-success' href='results.php?result=".$election['election_id']."'>Results</a>"." <a class='btn btn-danger' href='election.php?delete=".$election['election_id']."' role='button'>Delete</a>"."</td> ".
 									 "</tr>";
 
 

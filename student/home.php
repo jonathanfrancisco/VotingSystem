@@ -1,7 +1,19 @@
 
 <?php 
-	
+	require '../include/functions.php';
 	session_start();
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		var_dump($_POST['votes']);
+		exit;
+	}
+
+
+	// fetch on going election.
+	$availableElection = checkOngoingElection(date("Y-m-d"));
+	$positions = getPositions();
+	
+	
 
 	// if session auth id is not set redirect to login page
 	if( !(isset($_SESSION['auth_id']))) {
@@ -16,9 +28,17 @@
 	}
 
 
+	
+	else if(date("Y-m-d") > $availableElection['end_date'] ) {
+		session_destroy();
+		header("location:../index.php");
+		exit;
+	}
+
+
+
 
 	$title = "Student vote";
-
 	require '../include/templates/header.php';
 
 ?>
@@ -27,7 +47,6 @@
 
 
 <div class="container">
-
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-default text-center">
@@ -40,6 +59,51 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+		<form method="POST" action="home.php">
+
+		<?php
+
+			foreach($positions as $position) {
+
+				$candidates = getCandidatesForPosition($position['position_name'],$availableElection['election_id']);
+			
+				if(!empty($candidates)) {
+					echo "<h2>".$position['position_name']."</h2>";
+					echo "<select name='votes'>";
+					foreach($candidates as $candidate) {
+				
+						echo "<option value='".$candidate['candidate_id']."'>".$candidate['candidate_name']."</option>";
+
+					}
+					
+					echo "</select>";
+
+				}
+
+				else if(empty($candidates)){
+					// do nothing
+				}
+
+			}
+
+
+		?>
+
+			<input type="submit" class="btn btn-primary" value="Cast votes">
+
+		</form>
+
+
+
+		</div>
+	</div>
+
+
+
 
 </div>
 
