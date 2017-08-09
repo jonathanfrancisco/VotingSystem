@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-with, initial-scale=1">
+  <meta name="author" content="Jonathan Buted Francisco">
+  <meta name="description" content="Jonathan Francisco' Voting System">
+  <meta name="keywords" content="Programmer, Full-stack Web Developer, Web Developer, Front-End, Back-End, Portfolio, JavaScript, Android, Java, Java Developer, JavaScript Developer, Android Developer, PHP Developer, PHP">
   <title> <?php echo $title; ?> </title>
   <link rel="stylesheet" href="../include/css-js/bootstrap.min.css">
 </head>
