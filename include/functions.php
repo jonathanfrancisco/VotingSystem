@@ -289,11 +289,24 @@
 			echo $e->getMessage();
 		}
 
-	
 		return $result;
+	}
+
+	function castVote($candidate_id) {
+
+		try {
+			$connection = Database::connect();
+			$query = $connection->prepare("INSERT INTO votes VALUES(null,:candidate_id)");
+			$query->bindParam(":candidate_id",$candidate_id,PDO::PARAM_INT);
+			$query->execute();
+			Database::disconnect();
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
 
 	}
 
 
-
-?>
+?>;

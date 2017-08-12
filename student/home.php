@@ -4,17 +4,34 @@
 	session_start();
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		var_dump($_POST['votes']);
-		exit;
-	}
 
+
+		foreach($_POST as $candidate_id) {
+			castVote((int)$candidate_id);
+		}
+		// set the user to already voted
+		// destroy the session and redirect to index.php
+		session_destroy();
+		header("location:../index.php");
+
+
+		// $queryValues = "INSERT INTO votes ";
+		// foreach($_POST as $post) {
+		// 	$queryValues.= " VALUES(null,".$post.")";
+		// }
+
+		// $queryValues .= ";";
+
+		// header("location:home.php");
+
+		// // do this fookin sht
+		// // compile the votes in a string. Do it like this: (VALUES(),VALUES() and so on)
+		// // insert the votes in database
+	}
 
 	// fetch on going election.
 	$availableElection = checkOngoingElection(date("Y-m-d"));
-	$positions = getPositions();
 	
-	
-
 	// if session auth id is not set redirect to login page
 	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");
@@ -35,16 +52,10 @@
 		exit;
 	}
 
-
-
-
 	$title = "Student vote";
 	require '../include/templates/header.php';
 
 ?>
-
-
-
 
 <div class="container">
 	<div class="row">
@@ -67,21 +78,19 @@
 
 		<?php
 
+			$positions = getPositions();
+
 			foreach($positions as $position) {
 
 				$candidates = getCandidatesForPosition($position['position_name'],$availableElection['election_id']);
 			
 				if(!empty($candidates)) {
 					echo "<h2>".$position['position_name']."</h2>";
-					echo "<select name='votes'>";
+					echo "<select name='".$position['position_name']."'>";
 					foreach($candidates as $candidate) {
-				
 						echo "<option value='".$candidate['candidate_id']."'>".$candidate['candidate_name']."</option>";
-
 					}
-					
 					echo "</select>";
-
 				}
 
 				else if(empty($candidates)){
@@ -96,14 +105,8 @@
 			<input type="submit" class="btn btn-primary" value="Cast votes">
 
 		</form>
-
-
-
 		</div>
 	</div>
-
-
-
 
 </div>
 
@@ -112,16 +115,4 @@
 	<input type='submit' value="Logout">
 </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<?php  require '../include/templates/footer.php';		?>
+<?php  require '../include/templates/footer.php'; ?>
