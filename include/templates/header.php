@@ -10,12 +10,8 @@
 </head>
 <body>
 
-
-
-
-<!--  If admin show nav bar -->
 <?php
-
+	// if admin show the navigation bar
 	if(!empty($_SESSION['auth_id']) && $_SESSION['auth_id'] == "1") {
 
 			echo ' <nav class="navbar navbar-default">
@@ -46,19 +42,12 @@
 				    </div><!-- /.navbar-collapse -->
 
 				  </div><!-- /.container-fluid -->
-				</nav>  ';
+				</nav>';
 
 	}
-
-
-
-
 
 ?>
 
 
-
-
-<!-- else, do not -->
 
 
