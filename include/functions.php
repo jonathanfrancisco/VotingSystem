@@ -1,6 +1,7 @@
 <?php
 
 	require 'Database.php';
+	date_default_timezone_set("Asia/Hong_Kong");
 	
 	// authenticate and authorize a user
 	// if result == 1 redirect to admin
@@ -99,7 +100,6 @@
 			$query->bindParam(":lastName",$lastName,PDO::PARAM_STR);
 			$query->execute();
 			Database::disconnect();
-
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();
@@ -279,10 +279,10 @@
 		try {
 
 			$connection = Database::connect();
-			$query = $connection->prepare("SELECT * FROM elections WHERE start_date >= :dateToday ORDER BY start_date");
+			$query = $connection->prepare("SELECT * FROM elections WHERE start_date >= :dateToday");
 			$query->bindParam(":dateToday",$dateToday,PDO::PARAM_STR);
 			$query->execute();
-			$result = $query->fetch(PDO::FETCH_ASSOC);
+			$result = $query->fetch();
 			Database::disconnect();
 
 		} catch(PDOException $e) {

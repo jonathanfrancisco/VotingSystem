@@ -11,6 +11,7 @@
 <body>
 
 <?php
+	
 	// if admin show the navigation bar
 	if(!empty($_SESSION['auth_id']) && $_SESSION['auth_id'] == "1") {
 

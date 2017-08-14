@@ -30,8 +30,8 @@
 	}
 
 	// fetch on going election.
-	$availableElection = checkOngoingElection(date("Y-m-d"));
-	
+	$availableElection = checkOngoingElection(date("Y-d-m h:i:s"));
+
 	// if session auth id is not set redirect to login page
 	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");

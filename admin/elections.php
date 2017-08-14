@@ -20,9 +20,10 @@
 	}
 
 
+
 	if( $_SERVER['REQUEST_METHOD'] == "POST" && $_SESSION['auth_id'] == "1") {
 
-		addElection($_POST['electiontitle'],$_POST['startdate'],$_POST['enddate']);
+		addElection($_POST['electiontitle'],date_format(new DateTime($_POST['startdate']),'Y-m-d g:i A'),date_format(new DateTime($_POST['enddate']),'Y-m-d g:i A'));
 		header("location:elections.php");
 		exit;
 	}
@@ -48,13 +49,13 @@
 
 				  <div class="form-group">
 				    <label for="startdate">Start Date:</label>
-				    <input required type="date" class="form-control" id="startdate" name="startdate">
+				    <input required type="datetime-local" class="form-control" id="startdate" name="startdate">
 				  </div>
 
 
 				  <div class="form-group">
 				    <label for="enddate">End Date:</label>
-				    <input required type="date" class="form-control" id="enddate" name="enddate">
+				    <input required type="datetime-local" class="form-control" id="enddate" name="enddate">
 				  </div>
 
 				

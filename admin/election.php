@@ -5,7 +5,6 @@
 	require '../include/functions.php';
 	session_start();
 
-
 	// if session auth id is not set redirect to login page
 	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");
