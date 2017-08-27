@@ -56,13 +56,8 @@
 
 	}	
 
-
-
-
 	$title = "Election";
 	require '../include/templates/header.php';
-
-
 
 ?>
 

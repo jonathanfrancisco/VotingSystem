@@ -55,10 +55,6 @@
 		exit;
 	}
 
-
-
-
-
 	// if(date('Y-m-d h:i:s') < $availableElection) {
 	// 	session_destroy();
 	// 	header("location:../index.php");
@@ -111,7 +107,6 @@
 				}
 
 			}
-
 
 		?>
 

@@ -61,28 +61,7 @@
 				</form>
 			</div>
 		</div>
-
-
-
-
-
-
-
-
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <?php require '../include/templates/footer.php' ?>
