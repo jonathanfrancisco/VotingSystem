@@ -5,10 +5,12 @@
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+		
 
 		foreach($_POST as $candidate_id) {
 			castVote((int)$candidate_id);
 		}
+
 		// set the user to already voted
 		// destroy the session and redirect to index.php
 		session_destroy();

@@ -309,4 +309,31 @@
 
 	}
 
+
+	function getCandidateVotes($positionName,$electionId) {
+
+		try {
+
+			$connection = Database::connect();
+			$query = $connection->prepare("SELECT candidate_name, COUNT(*) as totalVotes FROM candidates INNER JOIN elections ON candidates.election_id = elections.election_id INNER JOIN officerpositions ON candidates.officer_position_id = officerpositions.officer_position_id INNER JOIN votes ON votes.candidate_id = candidates.candidate_id WHERE elections.election_id = :electionId AND officerpositions.position_name = :positionName GROUP BY candidate_name");
+			$query->bindParam(":electionId",$electionId,PDO::PARAM_INT);
+			$query->bindParam(":positionName",$positionName,PDO::PARAM_STR);
+			$query->execute();
+			$results = $query->fetchAll(PDO::FETCH_ASSOC);
+			Database::disconnect();
+
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+
+		return $results;
+	}
+
+
+
+
+
+
+
 ?>

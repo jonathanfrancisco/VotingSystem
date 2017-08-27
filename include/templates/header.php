@@ -26,6 +26,7 @@
 				      </button>
 				      <a class="navbar-brand" href="../../admin/home.php">Voting System</a>
 				    </div>
+
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav">
 				        <li><a href="../../admin/elections.php">Elections</a></li>
@@ -33,13 +34,13 @@
 				        <li><a href="../../admin/voters.php">Voters</a></li>
 				      </ul>
 
-				      <form action="../../logout.php" method="POST">
+				       <form action="../../logout.php" method="POST">
 
-				     	<button class="nav-right" type="submit">Logout</button>
+					     	<input class="navbar-right" type="submit" value="Logout">
 
+					   </form>
 
-				      </form>
-				     
+				    
 				    </div><!-- /.navbar-collapse -->
 
 				  </div><!-- /.container-fluid -->
