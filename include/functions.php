@@ -274,12 +274,14 @@
 	// check for on going election
 
 
-	function checkOngoingElection($dateToday) {
+	function checkOngoingElection() {
+
+		$dateToday = date('Y-m-d h:i:s');
 
 		try {
 
 			$connection = Database::connect();
-			$query = $connection->prepare("SELECT * FROM elections WHERE start_date >= :dateToday");
+			$query = $connection->prepare("SELECT * FROM elections WHERE :dateToday > start_date AND :dateToday < end_date");
 			$query->bindParam(":dateToday",$dateToday,PDO::PARAM_STR);
 			$query->execute();
 			$result = $query->fetch();

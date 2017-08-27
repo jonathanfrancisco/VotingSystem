@@ -29,9 +29,6 @@
 		// // insert the votes in database
 	}
 
-	// fetch on going election.
-	$availableElection = checkOngoingElection(date("Y-d-m h:i:s"));
-
 	// if session auth id is not set redirect to login page
 	if( !(isset($_SESSION['auth_id']))) {
 		header("location:../index.php");
@@ -45,12 +42,26 @@
 	}
 
 
-	
-	else if(date("Y-m-d") > $availableElection['end_date'] ) {
+	// fetch on going election.
+	$availableElection = checkOngoingElection();
+
+	// check if there is onGoingElection
+	// if there isn't, destroy session and redirect
+	if(!$availableElection) {
 		session_destroy();
 		header("location:../index.php");
 		exit;
 	}
+
+
+
+
+
+	// if(date('Y-m-d h:i:s') < $availableElection) {
+	// 	session_destroy();
+	// 	header("location:../index.php");
+	// 	exit;
+	// }
 
 	$title = "Student vote";
 	require '../include/templates/header.php';
